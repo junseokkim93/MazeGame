@@ -23,6 +23,7 @@ class App(tk.Tk):
     def quit_me(self):
         self.quit()
         self.destroy() 
+        print("\nWindow closed.")
         
     def window_setup(self):
         self.title("MazeRunner")
@@ -175,7 +176,7 @@ def main():
  
     app = App()
     app.mainloop()
-
+    print("\nProgram ended.")
     
 if __name__ == "__main__":
     main()

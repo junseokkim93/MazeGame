@@ -233,6 +233,8 @@ class Maze:
             if coord_to_visit == goal_coord:
                 if save_animation:
                     self.initialize_subplot()
+                    self.ax.annotate("S", xy=start_coord)
+                    self.ax.annotate("G", xy=goal_coord)
                     anim = FuncAnimation(self.fig, 
                                         self.solve_update, 
                                         frames=range(len(self.solve_history)), 
@@ -267,7 +269,7 @@ def run(row,col, algo, save_gen_animation, save_sol_animation):
         print("Finished solving a maze.")
     else:
         print("Maze could not be solved.")
-
+    
 # if __name__ == "__main__":
 
     # parser = argparse.ArgumentParser()
