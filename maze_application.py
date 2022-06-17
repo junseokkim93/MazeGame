@@ -6,16 +6,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-parser = argparse.ArgumentParser()
-parser.add_argument("row", help="row component of the maze size (row, col)",
-                    type=int)
-parser.add_argument("col", help="column component of the maze size (row, col)",
-                    type=int)
-parser.add_argument("-algo", "--search_algorithm", help="increase output verbosity",
-                    choices = ["DFS", "BFS", "A*"],
-                    default = "DFS",
-                    type=str)
-
 class Move(Enum):
     UP = -1, 0
     LEFT = 0, -1
@@ -263,18 +253,32 @@ class Maze:
     def solve_with_Astar(self, start_coord, goal_coord, save_animation=False):
         pass
             
-args = parser.parse_args()
 
-size = (args.row, args.col)
-amazing_maze = Maze(size, save_animation=True)
-start_coord = [1,1]
-goal_coord = [amazing_maze.lr-2, amazing_maze.lc-2]
+def run(row,col, algo, save_gen_animation, save_sol_animation):
 
-solved = amazing_maze.solve(args.search_algorithm, start_coord, goal_coord, save_animation=True)
-if solved:
-    print("Finished solving a maze.")
-else:
-    print("Maze could not be solved.")
+    # size = (args.row, args.col)\
+    size = (row, col)
+    amazing_maze = Maze(size, save_gen_animation)
+    start_coord = [1,1]
+    goal_coord = [amazing_maze.lr-2, amazing_maze.lc-2]
 
+    solved = amazing_maze.solve(algo, start_coord, goal_coord, save_sol_animation)
+    if solved:
+        print("Finished solving a maze.")
+    else:
+        print("Maze could not be solved.")
 
+# if __name__ == "__main__":
 
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument("row", help="row component of the maze size (row, col)",
+                        # type=int)
+    # parser.add_argument("col", help="column component of the maze size (row, col)",
+                        # type=int)
+    # parser.add_argument("-algo", "--search_algorithm", help="increase output verbosity",
+                        # choices = ["DFS", "BFS", "A*"],
+                        # default = "DFS",
+                        # type=str)
+    # args = parser.parse_args()
+    
+    # main()
